@@ -52,4 +52,4 @@ def retry_with_counter_until_status_is_success(num_retries = 10, timeout = 3):
     if not is_success:
         raise Exception(f'The process did not succeed after trying for {num_retries * timeout} seconds')
     
-retry_with_counter_until_status_is_success(6, 1)
+retry_with_counter_until_status_is_success()
