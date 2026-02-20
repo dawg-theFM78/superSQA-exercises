@@ -41,9 +41,9 @@ def retry_with_counter_until_status_is_success(num_retries=10, timeout=3):
         is_success = is_status_success()
 
         print(f'The success status is {is_success}')
-        counter += 1
+        
         if is_success:
-            print('The process is success.')
+            print('The process is success')
             break
         else:
             time.sleep(timeout)
