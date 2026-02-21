@@ -1,0 +1,15 @@
+symbol, trade_type, entry_price, stop_loss_price, target_price
+INVH,Short,$39.52,$40.52,$35.00
+PEP,Short,$153.68,$156.98,$146.10
+LIN,Short,$309.97,$315.82,$282.00
+REGN,Short,$644.64,$659.77,$539.00
+ORI,Short,$24.84,$25.60,$22.90
+DELL,Short,$94.17,$97.19,$90.00
+AXP,Short,$156.80,$162.16,$148.00
+TEAM,Short,$377.82,$387.49,$342.00
+PANW,Short,$463.72,$479.13,$400.00
+HLI,Short,$88.19,$91.49,$75.00
+BR,Short,$168.49,$172.86,$158.00
+ZTS,Short,$205.45,$210.11,$176.00
+LSI,Short,$125.18,$129.88,$98.00
+CYRN,Long,$0.62,$0.50,$0.81

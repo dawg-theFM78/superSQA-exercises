@@ -20,6 +20,9 @@
 #     2 - use the dictionary to create the file
 
 import pdb
+import pprint
+
+result_file_path = 'H:\\superSQA_py_lessons\\Exercises\\superSQA-exercises\\Exercise3\\output.csv'
 
 all_trades_raw = '''
 INVH Short $39.52
@@ -85,21 +88,31 @@ def raw_string_to_dictionary(input_string):
     all_trades = []                     # this list is to be a final output of the function
     for trade in input_as_a_list:       
         trade_split = trade.split()     # creating a sublist from every block, consisting of a separate words
-        symbol = trade_split[0]         # selecting parameters needed and assigning them to temp variables
-        trade_type = trade_split[1]
-        entry_price = trade_split[2]
-        stop_loss_price = trade_split[5]
-        target_price = trade_split[7]
 
         trade_dictionary = {                  # using parameters defined above we make a dictionary which is the convenient
-            'symbol': symbol,                 # way to interpret every block given as the input of function
-            'trade_type': trade_type,
-            'entry_price': entry_price,
-            'stop_loss_price': stop_loss_price,
-            'target_price': target_price,
+            'symbol': trade_split[0],                 # way to interpret every block given as the input of function
+            'trade_type': trade_split[1],
+            'entry_price': trade_split[2],
+            'stop_loss_price': trade_split[5],
+            'target_price': trade_split[7]
         }
         all_trades.append(trade_dictionary)   # append every "dictionary/block" into resulting list, as mentioned in Hints, part 1
 
-    print(all_trades)
+    return all_trades
 
-raw_string_to_dictionary(all_trades_raw)
+def create_trades_file(output_path, trades):
+
+    """
+    :param output_path: expect a full path of the file to be created
+    :param trades: a list of trades
+    :return:
+    """
+
+    with open(output_path, 'w') as  f:
+        f.write('symbol, trade_type, entry_price, stop_loss_price, target_price\n')
+        for i in trades:
+            f.write(f'{i['symbol']},{i['trade_type']},{i['entry_price']},{i['stop_loss_price']},{i['target_price']}\n')
+        
+
+all_trades_formatted = raw_string_to_dictionary(all_trades_raw)
+create_trades_file(result_file_path, all_trades_formatted)
