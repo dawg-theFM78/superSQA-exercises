@@ -1,0 +1,105 @@
+
+#  Scenario: 
+#      - your client has a subscription to a swing trading newsletter
+#      - every week the client gets an email with list of trades
+#      - the client track their trades in a spreadsheet ans every week they have to copy the
+#        trades from the email into their tracking spreadsheet.
+#      - the client wants a script that will parse the text from the email and create a csv
+#        so its easy to copy all trades into a tracking list 
+#
+#
+#  Exercise:
+#     * Create a program that will output a file with a list of trades listed in the email body.
+#     * The output file should have the following columns:
+#       symbol, trade_type, entry_price, stop_loss_price, target_price     
+#
+#  Hint/Suggestion
+
+#     1 - first create a dictinary with all trades. Each trade is a dictionary and all dictionaries
+#       are in a list
+#     2 - use the dictionary to create the file
+
+import pdb
+
+all_trades_raw = '''
+INVH Short $39.52
+Stop Loss $40.52
+Target $35.00
+
+PEP Short $153.68
+Stop Loss $156.98
+Target $146.10
+
+LIN Short $309.97
+Stop Loss $315.82
+Target $282.00
+
+REGN Short $644.64
+Stop Loss $659.77
+Target $539.00
+
+ORI Short $24.84
+Stop Loss $25.60
+Target $22.90
+
+DELL Short $94.17
+Stop Loss $97.19
+Target $90.00
+
+AXP Short $156.80
+Stop Loss $162.16
+Target $148.00
+
+TEAM Short $377.82
+Stop Loss $387.49
+Target $342.00
+
+PANW Short $463.72
+Stop Loss $479.13
+Target $400.00
+
+HLI Short $88.19
+Stop Loss $91.49
+Target $75.00
+
+BR Short $168.49
+Stop Loss $172.86
+Target $158.00
+
+ZTS Short $205.45
+Stop Loss $210.11
+Target $176.00
+
+LSI Short $125.18
+Stop Loss $129.88
+Target $98.00
+
+CYRN Long $0.62
+Stop Loss $0.50
+Target $0.81'''
+
+def raw_string_to_dictionary(input_string):
+    
+    input_as_a_list = input_string.split('\n\n') # converting multiline string into a list, consisting  
+                                                 # of blocks, one for each position
+    all_trades = []                     # this list is to be a final output of the function
+    for trade in input_as_a_list:       
+        trade_split = trade.split()     # creating a sublist from every block, consisting of a separate words
+        symbol = trade_split[0]         # selecting parameters needed and assigning them to temp variables
+        trade_type = trade_split[1]
+        entry_price = trade_split[2]
+        stop_loss_price = trade_split[5]
+        target_price = trade_split[7]
+
+        trade_dictionary = {                  # using parameters defined above we make a dictionary which is the convenient
+            'symbol': symbol,                 # way to interpret every block given as the input of function
+            'trade_type': trade_type,
+            'entry_price': entry_price,
+            'stop_loss_price': stop_loss_price,
+            'target_price': target_price,
+        }
+        all_trades.append(trade_dictionary)   # append every "dictionary/block" into resulting list, as mentioned in Hints, part 1
+
+    print(all_trades)
+
+raw_string_to_dictionary(all_trades_raw)
